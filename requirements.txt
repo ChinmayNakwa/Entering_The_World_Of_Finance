@@ -1,0 +1,9 @@
+datetime
+pytz
+pandas 
+pandas_datareader
+MetaTrader5 
+matplotlib
+numpy
+cot_reports
+scikit-learn
