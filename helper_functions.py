@@ -165,6 +165,7 @@ def plot_train_test_values(window, train_window, y_train, y_test, y_predicted):
     plt.axvline(x = first, color = 'black', linestyle = '--', linewidth = 1)
     plt.grid()
     plt.legend()
+    plt.show()
 
 def forecasting_threshold(predictions, threshold):
     for i in range(len(predictions)):

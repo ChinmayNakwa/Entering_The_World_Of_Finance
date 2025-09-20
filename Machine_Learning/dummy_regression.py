@@ -20,8 +20,6 @@ y_predicted_train = np.reshape(model.predict(x_train), (-1, 1))
 
 y_predicted = np.reshape(model.predict(x_test), (-1, 1))
 
-plot_train_test_values(100, 50, y_train, y_test, y_predicted)
-
 print('---')
 print('Accuracy Train = ', round(calculate_accuracy(y_predicted_train, y_train), 2), '%')
 print('Accuracy Test = ', round(calculate_accuracy(y_predicted, y_test), 2), '%')
@@ -42,3 +40,5 @@ print("Correlation Test =", round(test_corr, 3))
 
 print('Model Bias = ', round(model_bias(y_predicted), 2))
 print('----')
+
+plot_train_test_values(100, 50, y_train, y_test, y_predicted)

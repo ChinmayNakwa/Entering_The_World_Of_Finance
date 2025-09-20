@@ -1,8 +1,8 @@
-from sklearn.svm import SVR
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import make_pipeline
+import pandas as pd
+import matplotlib.pyplot as plt
 import numpy as np
-from helper_functions import data_preprocessing, calculate_accuracy, model_bias, plot_train_test_values, calculate_accuracy, mass_import
+from sklearn.ensemble import AdaBoostRegressor
+from helper_functions import data_preprocessing, mass_import, plot_train_test_values, calculate_accuracy, model_bias
 from sklearn.metrics import mean_squared_error
 
 data = np.diff(mass_import(0, 'D1')[:, 3])
@@ -12,7 +12,7 @@ train_test_split = 0.80
 
 x_train, y_train, x_test, y_test = data_preprocessing(data, num_lags, train_test_split)
 
-model = make_pipeline(StandardScaler(), SVR(kernel = 'rbf', C = 1, gamma = 0.04, epsilon = 0.01))
+model = AdaBoostRegressor(random_state = 123)
 model.fit(x_train, y_train)
 
 y_predicted_train = np.reshape(model.predict(x_train), (-1, 1))
@@ -20,7 +20,6 @@ y_predicted_train = np.reshape(model.predict(x_train), (-1, 1))
 y_predicted = np.reshape(model.predict(x_test), (-1, 1))
 
 plot_train_test_values(100, 50, y_train, y_test, y_predicted)
-
 
 print('---')
 print('Accuracy Train = ', round(calculate_accuracy(y_predicted_train, y_train), 2), '%')
@@ -46,3 +45,4 @@ print("Correlation Test =", round(test_corr, 3))
 print('Model Bias = ', round(model_bias(y_predicted), 2))
 print('----')
 
+print('---')
