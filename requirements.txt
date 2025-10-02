@@ -8,3 +8,4 @@ numpy
 cot_reports
 scikit-learn
 xgboost
+lightgbm
